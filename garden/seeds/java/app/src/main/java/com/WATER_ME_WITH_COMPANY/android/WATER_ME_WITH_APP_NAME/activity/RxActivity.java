@@ -13,45 +13,45 @@ import rx.subjects.BehaviorSubject;
  */
 abstract class RxActivity extends AppCompatActivity {
 
-    private final BehaviorSubject<ActivityEvent> lifecycleSubject = BehaviorSubject.create();
+    private final BehaviorSubject<ActivityEvent> mLifecycleSubject = BehaviorSubject.create();
 
     public Observable<ActivityEvent> lifecycle() {
-        return lifecycleSubject.asObservable();
+        return mLifecycleSubject.asObservable();
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        lifecycleSubject.onNext(ActivityEvent.CREATE);
+        mLifecycleSubject.onNext(ActivityEvent.CREATE);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        lifecycleSubject.onNext(ActivityEvent.START);
+        mLifecycleSubject.onNext(ActivityEvent.START);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        lifecycleSubject.onNext(ActivityEvent.RESUME);
+        mLifecycleSubject.onNext(ActivityEvent.RESUME);
     }
 
     @Override
     protected void onPause() {
-        lifecycleSubject.onNext(ActivityEvent.PAUSE);
+        mLifecycleSubject.onNext(ActivityEvent.PAUSE);
         super.onPause();
     }
 
     @Override
     protected void onStop() {
-        lifecycleSubject.onNext(ActivityEvent.STOP);
+        mLifecycleSubject.onNext(ActivityEvent.STOP);
         super.onStop();
     }
 
     @Override
     protected void onDestroy() {
-        lifecycleSubject.onNext(ActivityEvent.DESTROY);
+        mLifecycleSubject.onNext(ActivityEvent.DESTROY);
         super.onDestroy();
     }
 }

@@ -1,0 +1,10 @@
+# Applies to all subdirectories
+.gradle
+.DS_Store
+*.iml
+
+# Applies to root directory
+/.idea
+/local.properties
+build/
+gen/

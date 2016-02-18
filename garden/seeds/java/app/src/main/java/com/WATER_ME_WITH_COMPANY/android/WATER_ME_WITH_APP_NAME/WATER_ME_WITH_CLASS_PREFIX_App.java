@@ -17,6 +17,7 @@ import com.{{company_name}}.android.{{app_package_name_prefix}}.module.DaggerApp
 import com.{{company_name}}.android.{{app_package_name_prefix}}.module.{{app_class_prefix}}Module;
 import com.{{company_name}}.android.{{app_package_name_prefix}}.util.Api;
 import com.{{company_name}}.android.{{app_package_name_prefix}}.util.CrashlyticsLogger;
+import com.google.android.gms.tagmanager.TagManager;
 
 import timber.log.Timber;
 
@@ -25,15 +26,19 @@ import timber.log.Timber;
  */
 public class {{app_class_prefix}}App extends Application {
 
-    private AppServicesComponent appServicesComponent;
+    private AppServicesComponent mAppServicesComponent;
 
-    private RefWatcher refWatcher = RefWatcher.DISABLED;
+    private RefWatcher mRefWatcher = RefWatcher.DISABLED;
 
-    Cache picassoImageCache;
+    private TagManager mTagManager;
+
+    Cache mPicassoImageCache;
 
     @Override
     public void onCreate() {
         super.onCreate();
+
+        mTagManager = getTagManager();
 
         if (BuildConfig.DEBUG) {
             enableDebugTools();
@@ -41,9 +46,19 @@ public class {{app_class_prefix}}App extends Application {
 
         enableAppOnlyFunctionality();
 
-        appServicesComponent = DaggerAppServicesComponent.builder()
-                .{{app_class_prefix_lowercase}}Module(getModule())
+        mAppServicesComponent = DaggerAppServicesComponent.builder()
+                .{{app_class_prefix_lowercase}}Module(getModule(mTagManager))
                 .build();
+    }
+
+    /**
+     * Extracts application instance from context
+     */
+    public static {{app_class_prefix}}App from(@NonNull Context context) {
+        if (context == null) {
+            throw new IllegalArgumentException("context cannot be null");
+        }
+        return ({{app_class_prefix}}App) context.getApplicationContext();
     }
 
     @Override
@@ -52,18 +67,32 @@ public class {{app_class_prefix}}App extends Application {
         if (level >= TRIM_MEMORY_UI_HIDDEN) {
             Timber.d("Android is suggesting to trim memory .. clearing picasso cache. Level = %s", level);
             // Clear our picasso cache
-            picassoImageCache.clear();
+            mPicassoImageCache.clear();
         }
     }
 
-    {{app_class_prefix}}Module getModule() {
-        return new {{app_class_prefix}}Module(this);
+    {{app_class_prefix}}Module getModule(TagManager tagManager) {
+        return new {{app_class_prefix}}Module(this, tagManager);
+    }
+
+    /**
+     * So we can return a mock in the test application
+     */
+    protected TagManager getTagManager() {
+        return TagManager.getInstance(this);
     }
 
     void enableAppOnlyFunctionality() {
         if (BuildConfig.CRASHLYTICS_ENABLED) {
             Fabric.with(this, new Crashlytics(), new Answers());
             Timber.plant(new CrashlyticsLogger());
+        }
+
+        int container = getResources().getIdentifier(BuildConfig.GTM_BINARY_NAME, "raw", getPackageName());
+        if (container > 0) {
+            mTagManager
+                .loadContainerPreferFresh(BuildConfig.GTM_CONTAINER_ID, container)
+                .setResultCallback(mContainerHolder.getBindingCallback());
         }
 
         createPicassoCache();
@@ -86,7 +115,7 @@ public class {{app_class_prefix}}App extends Application {
 
         if (BuildConfig.LEAK_CANARY_ENABLED && Api.isUpTo(Api.LOLLIPOP)) {
             // LeakCanary causes a crash on M Developer Preview
-            refWatcher = LeakCanary.install(this);
+            mRefWatcher = LeakCanary.install(this);
         }
     }
 
@@ -95,7 +124,7 @@ public class {{app_class_prefix}}App extends Application {
      */
     void createPicassoCache() {
         Picasso.setSingletonInstance(new Picasso.Builder(this)
-                .memoryCache(picassoImageCache = new LruCache(this))
+                .memoryCache(mPicassoImageCache = new LruCache(this))
                 .build());
     }
 
@@ -104,10 +133,10 @@ public class {{app_class_prefix}}App extends Application {
      * other application components may want to use for injection purposes
      */
     public AppServicesComponent getAppServicesComponent() {
-        return appServicesComponent;
+        return mAppServicesComponent;
     }
 
     public RefWatcher getRefWatcher() {
-        return refWatcher;
+        return mRefWatcher;
     }
 }

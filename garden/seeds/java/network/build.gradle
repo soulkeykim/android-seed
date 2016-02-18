@@ -10,13 +10,22 @@ targetCompatibility = JavaVersion.VERSION_1_7
 
 dependencies {
     compile project(":model")
+
+    // Retrofit - Network Wrapper
     compile "com.squareup.retrofit:retrofit:${versions.retrofit}"
     compile "com.squareup.retrofit:converter-gson:${versions.retrofit}"
     compile "com.squareup.retrofit:adapter-rxjava:${versions.retrofit}"
+
+    // Okhttp - HTTP client
     compile "com.squareup.okhttp:okhttp:${versions.okHttp}"
+
+    // RX Java - Functional Reactive Programming
     compile "io.reactivex:rxjava:${versions.rxJava}"
+
+    // Gson - Json parsing
     compile "com.google.code.gson:gson:${versions.gson}"
 
+    // Testing
     testCompile "junit:junit:${versions.junit}"
     testCompile "org.mockito:mockito-core:${versions.mockito}"
     testCompile "com.squareup.okhttp:mockwebserver:${versions.okHttp}"

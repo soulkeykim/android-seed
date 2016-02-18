@@ -1,3 +1,29 @@
 <resources>
-    
+
+    <!-- Fonts -->
+    <string name="font_bold">fonts/RobotoCondensed-Bold.ttf</string>
+    <string name="font_regular">fonts/RobotoCondensed-Regular.ttf</string>
+    <string name="font_light">fonts/RobotoCondensed-Light.ttf</string>
+
+    <!-- Dialog Actions -->
+    <string name="dialog_action_confirm">OK</string>
+    <string name="dialog_action_close">Close</string>
+    <string name="dialog_action_cancel">Cancel</string>
+    <string name="dialog_action_retry">Try again</string>
+    <string name="dialog_action_update">Update now</string>
+
+    <!-- Dialog Titles -->
+    <string name="dialog_title_error_network">Network Error</string>
+    <string name="dialog_title_error_no_network">Unable to Connect</string>
+    <string name="dialog_title_error_out_of_date">Please Update</string>
+    <string name="dialog_title_error_general">Error</string>
+    <string name="dialog_title_error_bad_cert">Error</string>
+
+    <!-- Dialog Bodies -->
+    <string name="dialog_body_error_network">We are unable to connect to the network.</string>
+    <string name="dialog_body_error_no_network">Please check your network or WiFi connection and try again.</string>
+    <string name="dialog_body_error_out_of_date">Update to the latest version of the App to continue.</string>
+    <string name="dialog_body_error_general">Sorry, something has gone wrong. Please try again later.</string>
+    <string name="dialog_body_error_bad_cert">We have detected malicious activity. As such we cannot continue. Please try again later.</string>
+
 </resources>

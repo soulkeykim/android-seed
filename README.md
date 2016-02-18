@@ -70,5 +70,7 @@ Popular libraries used in the seed projects include:
 - Anko (For view utilities - Kotlin Only)
 - Mockito/Robolectric/Espresso/Spoon/Jacoco (For testing)
 - Crashlytics (For crash reporting)
+- Google Tag Manager (For analytics)
+- Consent (For runtime permissions)
 
 

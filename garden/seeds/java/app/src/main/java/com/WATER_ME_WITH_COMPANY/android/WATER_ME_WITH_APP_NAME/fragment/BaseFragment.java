@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.{{company_name}}.android.{{app_package_name_prefix}}.{{app_class_prefix}}App;
+import com.{{company_name}}.android.{{app_package_name_prefix}}.util.manager.DialogManager;
 
 import butterknife.ButterKnife;
 
@@ -15,19 +16,20 @@ import butterknife.ButterKnife;
  */
 public abstract class BaseFragment extends RxFragment {
 
+    @Inject DialogManager mDialogManager;
+
     /**
      * @return id of the layout to use in this fragment
      */
     @LayoutRes
     protected abstract int getLayoutId();
 
-    protected {{app_class_prefix}}App app;
-
+    protected {{app_class_prefix}}App mApp;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        app = ({{app_class_prefix}}App) getActivity().getApplicationContext();
+        mApp = {{app_class_prefix}}App.from(getActivity());
     }
 
     /**

@@ -13,7 +13,7 @@ import com.{{company_name}}.android.{{app_package_name_prefix}}.mvp.presenter.Pr
  */
 abstract class PresentableActivity<T extends Presenter> extends BaseActivity {
 
-    T presenter;
+    protected T mPresenter;
 
     /**
      * Return a presenter to use for this activity. This will only be called once per activity,
@@ -25,59 +25,51 @@ abstract class PresentableActivity<T extends Presenter> extends BaseActivity {
     @NonNull
     protected abstract T createPresenter(AppServicesComponent component);
 
-    /**
-     * @return The presenter instance originally returned from {@link #createPresenter(AppServicesComponent)}
-     */
-    @NonNull
-    protected T getPresenter() {
-        return presenter;
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.presenter = createPresenter(app.getAppServicesComponent());
-        if (this.presenter == null) {
+        mPresenter = createPresenter(app.getAppServicesComponent());
+        if (mPresenter == null) {
             throw new IllegalStateException("presenter == null");
         }
 
-        presenter.onCreate(savedInstanceState);
+        mPresenter.onCreate(savedInstanceState);
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        presenter.onSaveInstanceState(outState);
+        mPresenter.onSaveInstanceState(outState);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        presenter.onStart();
+        mPresenter.onStart();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        presenter.onResume();
+        mPresenter.onResume();
     }
 
     @Override
     protected void onPause() {
-        presenter.onPause();
+        mPresenter.onPause();
         super.onPause();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        presenter.onStop();
+        mPresenter.onStop();
     }
 
     @Override
     protected void onDestroy() {
-        presenter.onDestroy();
-        presenter = null;
+        mPresenter.onDestroy();
+        mPresenter = null;
         super.onDestroy();
     }
 }

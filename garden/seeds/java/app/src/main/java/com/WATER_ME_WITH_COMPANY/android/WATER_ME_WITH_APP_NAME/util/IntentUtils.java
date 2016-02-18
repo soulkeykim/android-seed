@@ -22,8 +22,7 @@ import java.util.List;
  */
 public class IntentUtils {
 
-    private static final String GOOGLE_MAPS_DIRECTIONS_URI_PREFIX
-            = "http://maps.google.com/maps?f=d&hl=en&z=13&daddr=";
+    private static final String GOOGLE_MAPS_DIRECTIONS_URI_PREFIX = "http://maps.google.com/maps?f=d&hl=en&z=13&daddr=";
 
     IntentUtils() {
         // No instances..

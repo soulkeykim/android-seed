@@ -8,12 +8,16 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
 import com.{{company_name}}.android.{{app_package_name_prefix}}.{{app_class_prefix}}App;
+import com.{{company_name}}.android.{{app_package_name_prefix}}.util.manager.DialogManager;
 
 import butterknife.ButterKnife;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public abstract class BaseActivity extends RxActivity {
 
-    protected {{app_class_prefix}}App app;
+    @Inject DialogManager mDialogManager;
+
+    protected {{app_class_prefix}}App mApp;
 
     /**
      * @return the layout resource to use for this activity,
@@ -24,7 +28,7 @@ public abstract class BaseActivity extends RxActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        app = ({{app_class_prefix}}App) getApplicationContext();
+        mApp = {{app_class_prefix}}App.from(this);
 
 
         final int layoutResId = getLayoutResource();
@@ -32,6 +36,11 @@ public abstract class BaseActivity extends RxActivity {
             setContentView(layoutResId);
         }
         ButterKnife.bind(this);
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
     /**

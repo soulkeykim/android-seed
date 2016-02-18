@@ -53,6 +53,9 @@ android {
         buildConfigField "String", "BUILD_TIME", "\"${getBuildTime()}\""
         buildConfigField "String", "GIT_SHA", "\"${getGitSha()}\""
         buildConfigField "String", "BUILD_NUMBER", "\"${getCiBuildNumber()}\""
+
+        buildConfigField "String", "GTM_CONTAINER_ID", config.tagManagerContainer
+        buildConfigField "String", "GTM_BINARY_NAME", config.tagManagerBinary
     }
 
     buildTypes {
@@ -129,40 +132,65 @@ dependencies {
     compile project(":model")
     compile project(":network")
     compile fileTree(dir: 'libs', include: '*.jar')
+
+    // Android Support
     compile "com.android.support:appcompat-v7:${versions.androidSupport}"
     compile "com.android.support:support-v4:${versions.androidSupport}"
     compile "com.android.support:recyclerview-v7:${versions.androidSupport}"
+
+    // Dagger - Dependency Injection
     compile "com.google.dagger:dagger:${versions.dagger}"
-    compile "uk.co.chrisjenx:calligraphy:${versions.calligraphy}"
-    compile "com.jakewharton.timber:timber:${versions.timber}"
-    compile "com.jakewharton:butterknife:${versions.butterknife}"
-    compile "com.squareup.picasso:picasso:${versions.picasso}"
+    apt "com.google.dagger:dagger-compiler:${versions.dagger}"
     compile "javax.annotation:jsr250-api:${versions.jsr250}"
+
+    // Calligraphy - Fonts
+    compile "uk.co.chrisjenx:calligraphy:${versions.calligraphy}"
+
+    // Timber - Logging
+    compile "com.jakewharton.timber:timber:${versions.timber}"
+
+    // Butterknife - View Injection
+    compile "com.jakewharton:butterknife:${versions.butterknife}"
+
+    // Picasso - Image Management
+    compile "com.squareup.picasso:picasso:${versions.picasso}"
+
+    // Stetho - Debugging Utility
     compile "com.facebook.stetho:stetho:${versions.stetho}"
+
+    // YearClass - Device Capability Assessment
     compile "com.facebook.device.yearclass:yearclass:${versions.yearClass}"
+
+    // Consent - Runtime Permissions
+    compile "com.seaplain:consent:${versions.consent}"
+
+
+    // EasyDataStoreLib - Shared Prefs Wrapper
     compile "com.lacronicus:easydatastorelib:${versions.easyDataStore}"
     compile("com.crashlytics.sdk.android:crashlytics:${versions.fabricClient}") {
         transitive = true;
     }
 
+    // RX Android - Android Specific RXJava
     compile "io.reactivex:rxandroid:${versions.rxAndroid}"
     compile "com.jakewharton.rxbinding:rxbinding:${versions.rxBinding}"
     compile "com.jakewharton.rxbinding:rxbinding-support-v4:${versions.rxBinding}"
     compile "com.jakewharton.rxbinding:rxbinding-recyclerview-v7:${versions.rxBinding}"
     compile "com.trello:rxlifecycle:${versions.rxLifecycle}"
 
+    // LeakCanary - Memory Leak Detection
     debugCompile "com.squareup.leakcanary:leakcanary-android:${versions.leakCanary}"
     jacocoEnabledCompile "com.squareup.leakcanary:leakcanary-android-no-op:${versions.leakCanary}"
     releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:${versions.leakCanary}"
 
-    apt "com.google.dagger:dagger-compiler:${versions.dagger}"
-
+    // Unit Testing
     testCompile "junit:junit:${versions.junit}"
     testCompile "org.robolectric:robolectric:${versions.robolectric}"
     testCompile "org.robolectric:shadows-support-v4:${versions.robolectric}"
     testCompile "org.mockito:mockito-core:${versions.mockito}"
     testCompile "org.assertj:assertj-core:${versions.assertJ}"
 
+    // Android Testing
     androidTestCompile "com.android.support.test.espresso:espresso-core:${versions.espresso}"
     androidTestCompile "com.android.support.test:runner:${versions.esspressoSupport}"
     androidTestCompile "com.android.support.test:rules:${versions.esspressoSupport}"

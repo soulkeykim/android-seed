@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 public class NetworkDataSource implements DataSource {
 
-    private static final long CONNECTION_TIMEOUT = TimeUnit.SECONDS.toMillis(10);
+    private static final long CONNECTION_TIMEOUT = 10;
 
     final ApiService service;
 
@@ -28,9 +28,9 @@ public class NetworkDataSource implements DataSource {
 
     private OkHttpClient createDefaultHttpClient() {
         final OkHttpClient client = new OkHttpClient();
-        client.setReadTimeout(CONNECTION_TIMEOUT, TimeUnit.MILLISECONDS);
-        client.setWriteTimeout(CONNECTION_TIMEOUT, TimeUnit.MILLISECONDS);
-        client.setConnectTimeout(CONNECTION_TIMEOUT, TimeUnit.MILLISECONDS);
+        client.setReadTimeout(CONNECTION_TIMEOUT, TimeUnit.SECONDS);
+        client.setWriteTimeout(CONNECTION_TIMEOUT, TimeUnit.SECONDS);
+        client.setConnectTimeout(CONNECTION_TIMEOUT, TimeUnit.SECONDS);
         return client;
     }
 

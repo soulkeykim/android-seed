@@ -11,6 +11,7 @@ import com.{{company_name}}.android.{{app_package_name_prefix}}.fragment.BaseFra
 import com.{{company_name}}.android.{{app_package_name_prefix}}.util.RxUtils;
 import com.{{company_name}}.android.{{app_package_name_prefix}}.mvp.view.HomeMvpView;
 import com.{{company_name}}.android.{{app_package_name_prefix}}.module.AppServicesComponent;
+import com.{{company_name}}.android.{{app_package_name_prefix}}.mvp.presenter.HomeMvpView;
 
 import rx.Observable;
 import rx.Observer;
@@ -23,6 +24,15 @@ public class HomePresenter extends Presenter<HomeMvpView> {
 
     public HomePresenter(@NonNull HomeMvpView view, AppServicesComponent component) {
         super(view, component);
+    }
+
+    @Override
+    protected void injectInto(@NonNull AppServicesComponent component) {
         component.inject(this);
     }
+
+    public interface HomeMvpView extends MvpView<String> {
+
+    }
+
 }

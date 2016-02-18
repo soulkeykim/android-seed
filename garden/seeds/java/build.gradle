@@ -38,6 +38,9 @@ subprojects {
                 versionCode : 1,
                 versionName : "1.0",
 
+                tagManagerContainer : "\"YOUR_CONTAINER_ID\"",
+                tagManagerBinary : "\"RES_NAME_OF_CONTAINER_BINARY_IN_RAW_FOLDER\"",
+
                 releaseSigning : [
                     storeFile : 'release.keystore',
                     storePassword : System.getenv('RELEASE_STORE_PASSWORD'),
@@ -84,6 +87,7 @@ subprojects {
                 espresso : "2.2",
                 esspressoSupport : "0.3",
                 spoon : "1.1.9",
+                consent : "1.0.1",
 
         ]
     }

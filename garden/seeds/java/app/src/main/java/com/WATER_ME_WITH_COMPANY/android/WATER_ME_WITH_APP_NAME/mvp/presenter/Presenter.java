@@ -11,6 +11,7 @@ import com.{{company_name}}.android.{{app_package_name_prefix}}.fragment.BaseFra
 import com.{{company_name}}.android.{{app_package_name_prefix}}.util.RxUtils;
 import com.{{company_name}}.android.{{app_package_name_prefix}}.mvp.view.MvpView;
 import com.{{company_name}}.android.{{app_package_name_prefix}}.module.AppServicesComponent;
+import com.{{company_name}}.android.{{app_package_name_prefix}}.util.BaseSubscriber;
 
 import rx.Observable;
 import rx.Observer;
@@ -25,21 +26,38 @@ import rx.subscriptions.CompositeSubscription;
  */
 public abstract class Presenter<V extends MvpView> {
 
-    private final V view;
+    private static final AtomicInteger NEXT_ID = new AtomicInteger();
+
+    private final V mView;
 
     public Presenter(@NonNull V view, AppServicesComponent component) {
-        this.view = view;
+        mView = view;
         if (this.view == null) {
             throw new IllegalArgumentException("view != null");
+        } else if (component == null) {
+            throw new IllegalArgumentException("component cannot be null");
         }
+        injectInto(component);
     }
 
+    /**
+     * Because of code generation Dagger 2 requires injection at the class level,
+     * super classes will not work. We could get around this using reflection but that
+     * defeats the purpose of Dagger 2 over Dagger 1. Instead use an abstract method
+     * to guarantee subclass injection.
+     */
+    protected abstract void injectInto(@NonNull AppServicesComponent component);
+
     protected V getView() {
-        return view;
+        return mView;
     }
 
     protected Context getContext() {
         return view.getContext();
+    }
+
+    public static int nextId() {
+        return NEXT_ID.incrementAndGet();
     }
 
     public void onCreate(Bundle savedInstanceState) {
@@ -70,7 +88,7 @@ public abstract class Presenter<V extends MvpView> {
 
     }
 
-    protected <R> Subscription bind(Observable<R> observable, Observer<? super R> observer) {
+    protected <R> Subscription bind(Observable<R> observable, BaseSubscriber<? super R> observer) {
         final Observable<R> sourceObservable = observable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
@@ -85,23 +103,5 @@ public abstract class Presenter<V extends MvpView> {
         }
 
         return boundObservable.subscribe(observer);
-    }
-
-    protected class SimpleSubscriber<T> extends Subscriber<T> {
-
-        @Override
-        public void onCompleted() {
-
-        }
-
-        @Override
-        public void onError(Throwable e) {
-
-        }
-
-        @Override
-        public void onNext(T t) {
-
-        }
     }
 }

@@ -73,8 +73,7 @@ public class ViewUtils {
         final DisplayMetrics dm = new DisplayMetrics();
         activity.getWindowManager().getDefaultDisplay().getMetrics(dm);
 
-        return dm.heightPixels -
-                activity.findViewById(android.R.id.content).getMeasuredHeight();
+        return dm.heightPixels - activity.findViewById(android.R.id.content).getMeasuredHeight();
     }
 
     /**

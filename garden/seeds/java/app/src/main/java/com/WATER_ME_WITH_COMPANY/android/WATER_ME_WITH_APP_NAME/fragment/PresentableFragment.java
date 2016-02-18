@@ -12,58 +12,55 @@ import com.{{company_name}}.android.{{app_package_name_prefix}}.mvp.presenter.Pr
  */
 public abstract class PresentableFragment<T extends Presenter> extends BaseFragment {
 
-    private T presenter;
+    protected T mPresenter;
 
     protected abstract T createPresenter(AppServicesComponent servicesComponent, Bundle savedInstanceState);
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        presenter = createPresenter(app.getAppServicesComponent(), savedInstanceState);
-        if (presenter == null) {
+        mPresenter = createPresenter(mApp.getAppServicesComponent(), savedInstanceState);
+        if (mPresenter == null) {
             throw new IllegalStateException("presenter == null");
         }
-        presenter.onCreate(savedInstanceState);
+        mPresenter.onCreate(savedInstanceState);
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        presenter.onSaveInstanceState(outState);
+        mPresenter.onSaveInstanceState(outState);
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        presenter.onStart();
+        mPresenter.onStart();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        presenter.onResume();
+        mPresenter.onResume();
     }
 
     @Override
     public void onPause() {
-        presenter.onPause();
+        mPresenter.onPause();
         super.onPause();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        presenter.onStop();
+        mPresenter.onStop();
     }
 
     @Override
     public void onDestroy() {
-        presenter.onDestroy();
-        presenter = null;
+        mPresenter.onDestroy();
+        mPresenter = null;
         super.onDestroy();
     }
 
-    public final T getPresenter() {
-        return presenter;
-    }
 }

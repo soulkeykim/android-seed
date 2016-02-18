@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- Theme -->
     <color name="primary">#1A1E25</color>
     <color name="primary_dark">#1A1E25</color>
     <color name="accent">#2DBDF8</color>
     <color name="divider">#B6B6B6</color>
+
+    <!-- Text -->
+    <color name="text_title">@color/primary</color>
+    <color name="text_body">#5F6A72</color>
+
 </resources>
