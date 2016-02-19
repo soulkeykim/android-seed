@@ -56,10 +56,6 @@ public class DialogManager {
                 showBadCertDialog(context);
                 break;
 
-            case UNAUTHORIZED:
-                showUnauthorisedErrorDialog(context);
-                break;
-
             case VIEW_SPECIFIC:
                 return false;
 
@@ -119,21 +115,6 @@ public class DialogManager {
                 onCloseListener,
                 NO_FIELD
         );
-    }
-
-    public AlertDialog showUnauthorisedErrorDialog(@Nullable final Context context) {
-        if (context == null) {
-            return null;
-        }
-        return showAlertDialog(
-                context,
-                R.string.dialog_title_error_session_expired,
-                R.string.dialog_body_error_session_expired,
-                R.string.dialog_action_login,
-                NO_FIELD,
-                null,
-                null,
-                NO_FIELD);
     }
 
     public AlertDialog showBadCertDialog(@Nullable final Context context) {

@@ -58,6 +58,8 @@ android {
 
         buildConfigField "String", "GTM_CONTAINER_ID", config.tagManagerContainer
         buildConfigField "String", "GTM_BINARY_NAME", config.tagManagerBinary
+
+        buildConfigField "String", "BASE_URL", config.baseUrl
     }
 
     buildTypes {

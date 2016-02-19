@@ -6,6 +6,7 @@ import android.preference.PreferenceManager;
 import com.{{company_name}}.android.{{app_package_name_prefix}}.{{app_class_prefix}}App;
 import com.{{company_name}}.android.{{app_package_name_prefix}}.data.AppSettings;
 import com.{{company_name}}.android.{{app_package_name_prefix}}.util.manager.DialogManager;
+import com.{{company_name}}.android.{{app_package_name_prefix}}.BuildConfig;
 import com.{{company_name}}.{{app_package_name_prefix}}.network.NetworkDataSource;
 import com.lacronicus.easydatastorelib.DatastoreBuilder;
 
@@ -68,7 +69,7 @@ public class {{app_class_prefix}}Module {
     @Provides
     @Singleton
     NetworkDataSource providesDataSource() {
-        return new NetworkDataSource();
+        return new NetworkDataSource(BuildConfig.BASE_URL);
     }
 
     @Provides

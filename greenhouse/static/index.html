@@ -64,6 +64,8 @@
 					form[elem].required = true;
 				});
 
+				form["crashlytics_api_key"].required = false;
+
 				var firstInvalidElem = null
 				var isValid = formElems.reduce(function(prevVal, currentVal, index) {
 					var validity = form[currentVal].validity
@@ -217,7 +219,7 @@
 
 							<span>
 								<div id="tt_crashlytics_api_key" class="icon material-icons" tabindex="-1">help</div>
-								<div class="mdl-tooltip" for="tt_crashlytics_api_key">Your API key for crashlytics. See <a href="http://blog.danlew.net/2015/02/20/setting-up-a-new-app-in-crashlytics-without-the-plugin/">here</a> for more info</div>
+								<div class="mdl-tooltip" for="tt_crashlytics_api_key">Your API key for crashlytics (optional). See <a href="http://blog.danlew.net/2015/02/20/setting-up-a-new-app-in-crashlytics-without-the-plugin/">here</a> for more info</div>
 							</span>
 
 							<br />

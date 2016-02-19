@@ -8,9 +8,8 @@ import java.security.cert.CertificateExpiredException;
 
 import javax.net.ssl.SSLException;
 
-import retrofit.RetrofitError;
-import retrofit.RetrofitError.Kind;
 import rx.Subscriber;
+import java.io.IOException;
 
 import static com.{{company_name}}.android.{{app_package_name_prefix}}.mvp.view.MvpView.ErrorType.BAD_CERT;
 import static com.{{company_name}}.android.{{app_package_name_prefix}}.mvp.view.MvpView.ErrorType.CERT_EXPIRED;
@@ -23,7 +22,7 @@ import static java.net.HttpURLConnection.HTTP_BAD_REQUEST;
 import static java.net.HttpURLConnection.HTTP_INTERNAL_ERROR;
 import static java.net.HttpURLConnection.HTTP_NOT_FOUND;
 import static java.net.HttpURLConnection.HTTP_UNAUTHORIZED;
-import static retrofit.RetrofitError.unexpectedError;
+
 
 /**
  * Simple pattern for RX {@link Subscriber}

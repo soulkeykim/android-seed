@@ -38,6 +38,8 @@ subprojects {
                 versionCode : 1,
                 versionName : "1.0",
 
+                baseUrl : "\"www.google.com\"",
+
                 tagManagerContainer : "\"YOUR_CONTAINER_ID\"",
                 tagManagerBinary : "\"RES_NAME_OF_CONTAINER_BINARY_IN_RAW_FOLDER\"",
 
