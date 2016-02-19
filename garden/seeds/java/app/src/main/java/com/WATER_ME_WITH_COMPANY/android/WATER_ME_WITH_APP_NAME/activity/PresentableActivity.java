@@ -28,7 +28,7 @@ abstract class PresentableActivity<T extends Presenter> extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mPresenter = createPresenter(app.getAppServicesComponent());
+        mPresenter = createPresenter(mApp.getAppServicesComponent());
         if (mPresenter == null) {
             throw new IllegalStateException("presenter == null");
         }

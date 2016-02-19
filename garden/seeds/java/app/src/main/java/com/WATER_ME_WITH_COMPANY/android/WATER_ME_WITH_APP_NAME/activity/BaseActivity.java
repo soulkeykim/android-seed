@@ -1,11 +1,14 @@
 package com.{{company_name}}.android.{{app_package_name_prefix}}.activity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+
+import javax.inject.Inject;
 
 import com.{{company_name}}.android.{{app_package_name_prefix}}.{{app_class_prefix}}App;
 import com.{{company_name}}.android.{{app_package_name_prefix}}.util.manager.DialogManager;
@@ -29,7 +32,7 @@ public abstract class BaseActivity extends RxActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mApp = {{app_class_prefix}}App.from(this);
-
+        mApp.getAppServicesComponent().inject(this);
 
         final int layoutResId = getLayoutResource();
         if (layoutResId > 0) {

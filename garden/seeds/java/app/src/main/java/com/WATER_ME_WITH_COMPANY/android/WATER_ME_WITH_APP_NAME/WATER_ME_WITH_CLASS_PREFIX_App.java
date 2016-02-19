@@ -2,6 +2,8 @@ package com.{{company_name}}.android.{{app_package_name_prefix}};
 
 import android.app.Application;
 import android.os.StrictMode;
+import android.content.Context;
+import android.support.annotation.NonNull;
 
 import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.answers.Answers;
@@ -90,9 +92,7 @@ public class {{app_class_prefix}}App extends Application {
 
         int container = getResources().getIdentifier(BuildConfig.GTM_BINARY_NAME, "raw", getPackageName());
         if (container > 0) {
-            mTagManager
-                .loadContainerPreferFresh(BuildConfig.GTM_CONTAINER_ID, container)
-                .setResultCallback(mContainerHolder.getBindingCallback());
+            mTagManager.loadContainerPreferFresh(BuildConfig.GTM_CONTAINER_ID, container);
         }
 
         createPicassoCache();

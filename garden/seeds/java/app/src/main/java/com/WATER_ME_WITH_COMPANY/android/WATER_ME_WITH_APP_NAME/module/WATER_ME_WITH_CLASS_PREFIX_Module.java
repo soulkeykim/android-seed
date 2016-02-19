@@ -45,7 +45,7 @@ public class {{app_class_prefix}}Module {
 
     @Provides
     Context providesContext() {
-        return application;
+        return mApplication;
     }
 
     @Provides

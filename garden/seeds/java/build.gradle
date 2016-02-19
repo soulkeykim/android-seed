@@ -82,6 +82,7 @@ subprojects {
                 jacoco : "0.7.2.201409121644",
                 mockito : "2.0.31-beta",
                 robolectric : "3.0",
+                gms : "8.3.0",
                 junit : "4.12",
                 assertJ : "1.7.1",
                 espresso : "2.2",

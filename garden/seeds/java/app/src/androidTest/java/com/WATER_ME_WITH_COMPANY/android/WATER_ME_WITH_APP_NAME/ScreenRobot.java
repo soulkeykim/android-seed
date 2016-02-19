@@ -1,4 +1,4 @@
-package com.australiansuper.android.australiansuper;
+package {{company_name}}.android.{{app_package_name_prefix}};
 
 import android.app.Activity;
 import android.app.Instrumentation;
@@ -14,9 +14,9 @@ import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
 
-import com.australiansuper.android.australiansuper.activity.LoginActivityTest.LoginScreenRobot;
-import com.australiansuper.android.australiansuper.mvp.view.MvpView;
-import com.australiansuper.android.australiansuper.mvp.view.MvpView.ErrorType;
+import com.{{company_name}}.android.{{app_package_name_prefix}}.activity.LoginActivityTest.LoginScreenRobot;
+import com.{{company_name}}.android.{{app_package_name_prefix}}.mvp.view.MvpView;
+import com.{{company_name}}.android.{{app_package_name_prefix}}.mvp.view.MvpView.ErrorType;
 import com.squareup.spoon.Spoon;
 
 import java.util.Collection;

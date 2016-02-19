@@ -9,9 +9,9 @@ import android.support.v4.app.Fragment;
 import com.{{company_name}}.android.{{app_package_name_prefix}}.activity.BaseActivity;
 import com.{{company_name}}.android.{{app_package_name_prefix}}.fragment.BaseFragment;
 import com.{{company_name}}.android.{{app_package_name_prefix}}.util.RxUtils;
-import com.{{company_name}}.android.{{app_package_name_prefix}}.mvp.view.HomeMvpView;
 import com.{{company_name}}.android.{{app_package_name_prefix}}.module.AppServicesComponent;
-import com.{{company_name}}.android.{{app_package_name_prefix}}.mvp.presenter.HomeMvpView;
+import com.{{company_name}}.android.{{app_package_name_prefix}}.mvp.view.MvpView;
+import com.{{company_name}}.android.{{app_package_name_prefix}}.mvp.presenter.HomePresenter.HomeMvpView;
 
 import rx.Observable;
 import rx.Observer;

@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import javax.inject.Inject;
+
 import com.{{company_name}}.android.{{app_package_name_prefix}}.{{app_class_prefix}}App;
 import com.{{company_name}}.android.{{app_package_name_prefix}}.util.manager.DialogManager;
 
@@ -30,6 +32,7 @@ public abstract class BaseFragment extends RxFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mApp = {{app_class_prefix}}App.from(getActivity());
+        mApp.getAppServicesComponent().inject(this);
     }
 
     /**
@@ -61,6 +64,6 @@ public abstract class BaseFragment extends RxFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        app.getRefWatcher().watch(this, getClass().getSimpleName());
+        mApp.getRefWatcher().watch(this, getClass().getSimpleName());
     }
 }

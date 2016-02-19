@@ -1,4 +1,4 @@
-package com.seaplain.android.chat.processing.activity;
+package com.{{company_name}}.android.{{app_package_name_prefix}}.activity;
 
 import android.content.Intent;
 import android.support.test.InstrumentationRegistry;
@@ -6,16 +6,16 @@ import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.suitebuilder.annotation.LargeTest;
 
-import com.seaplain.android.chat.processing.R;
-import com.seaplain.android.chat.processing.ScreenRobot;
+import com.{{company_name}}.android.{{app_package_name_prefix}}.R;
+import com.{{company_name}}.android.{{app_package_name_prefix}}.ScreenRobot;
 
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static com.seaplain.android.chat.processing.ScreenRobot.withRobot;
-import static com.seaplain.android.chat.processing.mvp.presenter.HomePresenter.SUBMIT_MESSAGE_REQUEST;
-import static com.seaplain.android.chat.processing.mvp.view.MvpView.ErrorType.SERVER;
+import static com.{{company_name}}.android.{{app_package_name_prefix}}.ScreenRobot.withRobot;
+import static com.{{company_name}}.android.{{app_package_name_prefix}}.mvp.presenter.HomePresenter.SUBMIT_MESSAGE_REQUEST;
+import static com.{{company_name}}.android.{{app_package_name_prefix}}.mvp.view.MvpView.ErrorType.SERVER;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest

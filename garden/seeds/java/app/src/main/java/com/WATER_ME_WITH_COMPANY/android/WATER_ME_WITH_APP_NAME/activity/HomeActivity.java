@@ -7,8 +7,9 @@ import android.content.DialogInterface.OnClickListener;
 
 import com.{{company_name}}.android.{{app_package_name_prefix}}.R;
 import com.{{company_name}}.android.{{app_package_name_prefix}}.mvp.presenter.HomePresenter;
-import com.{{company_name}}.android.{{app_package_name_prefix}}.mvp.view.HomeMvpView;
+import com.{{company_name}}.android.{{app_package_name_prefix}}.mvp.presenter.HomePresenter.HomeMvpView;
 import com.{{company_name}}.android.{{app_package_name_prefix}}.module.AppServicesComponent;
+import com.{{company_name}}.android.{{app_package_name_prefix}}.mvp.view.MvpView.ErrorType;
 
 public class HomeActivity extends PresentableActivity<HomePresenter> implements HomeMvpView {
 

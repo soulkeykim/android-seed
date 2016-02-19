@@ -15,6 +15,9 @@ import java.lang.reflect.Method;
 
 import rx.TestSchedulerRule;
 
+import static com.{{company_name}}.android.{{app_package_name_prefix}}.BuildConfig.BUILD_TYPE;
+import static com.{{company_name}}.android.{{app_package_name_prefix}}.BuildConfig.FLAVOR;
+
 public class {{app_class_prefix}}TestRunner extends RobolectricGradleTestRunner {
 
     static {
@@ -60,6 +63,32 @@ public class {{app_class_prefix}}TestRunner extends RobolectricGradleTestRunner 
                 }
             };
         }
+    }
+
+    /**
+     *  Annoying problem pertaining to where the tests are run from
+     *  i.e. in the app directory or in the top-level directory
+     *  https://github.com/robolectric/robolectric/issues/1430
+     */
+    @Override
+    protected AndroidManifest getAppManifest(@NonNull Config config) {
+        final String dirPrefix = new File("").getAbsoluteFile().getName().equals("app") ? "" : "app/";
+
+        String src = dirPrefix + "src/main/AndroidManifest.xml";
+        String res = String.format(dirPrefix + "build/intermediates/res/%1$s/%2$s", FLAVOR, BUILD_TYPE);
+        String assets = String.format(dirPrefix + "build/intermediates/assets/%1$s/%2$s", FLAVOR, BUILD_TYPE);
+
+        // Support new gradle build (1.3)
+        if (!Fs.fileFromPath(res).exists()) {
+            res = String.format(dirPrefix + "build/intermediates/res/merged/%1$s/%2$s", FLAVOR, BUILD_TYPE);
+        }
+
+        return new AndroidManifest(Fs.fileFromPath(src), Fs.fileFromPath(res), Fs.fileFromPath(assets)) {
+            @Override
+            public String getRClassName() throws Exception {
+                return com.seaplain.android.chat.processing.R.class.getName();
+            }
+        };
     }
 
     private class DelegatingConfig implements Config {

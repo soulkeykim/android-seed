@@ -18,6 +18,7 @@ import static com.{{company_name}}.android.{{app_package_name_prefix}}.mvp.view.
 import static com.{{company_name}}.android.{{app_package_name_prefix}}.mvp.view.MvpView.ErrorType.NO_NETWORK;
 import static com.{{company_name}}.android.{{app_package_name_prefix}}.mvp.view.MvpView.ErrorType.SERVER;
 import static com.{{company_name}}.android.{{app_package_name_prefix}}.mvp.view.MvpView.ErrorType.UNAUTHORIZED;
+import static com.{{company_name}}.android.{{app_package_name_prefix}}.mvp.view.MvpView.ErrorType.UNEXPECTED;
 import static java.net.HttpURLConnection.HTTP_BAD_REQUEST;
 import static java.net.HttpURLConnection.HTTP_INTERNAL_ERROR;
 import static java.net.HttpURLConnection.HTTP_NOT_FOUND;
@@ -50,52 +51,19 @@ public class BaseSubscriber<T> extends Subscriber<T> {
      */
     @Override
     public void onError(Throwable e) {
-        RetrofitError re = e instanceof RetrofitError ? (RetrofitError) e : unexpectedError(getRequestId(), e);
-        onError(re);
-    }
-
-    /**
-     * Note not final just in case additional functionality is ever required in a
-     * specific case
-     */
-    public void onError(RetrofitError re) {
-        String msg = re.getUrl() + " failed";
-        Exception exception = new NonCriticalException(msg, re);
-
-        if (re.getKind() == Kind.NETWORK) {
-            final ErrorType type;
-
-            if (re.getCause() instanceof SocketTimeoutException) {
-                type = NETWORK;
-            } else if (re.getCause() instanceof CertificateExpiredException) {
-                type = CERT_EXPIRED;
-            } else if (re.getCause() instanceof SSLException) {
-                type = BAD_CERT;
-            } else {
-                type = NO_NETWORK;
-            }
-
-            onError(type, mRequestCode);
-        } else if (re.getKind() == Kind.HTTP) {
-            switch (re.getResponse().getStatus()) {
-                case HTTP_UNAUTHORIZED:
-                    onError(UNAUTHORIZED, mRequestCode);
-                    break;
-
-                case HTTP_BAD_REQUEST:
-                case HTTP_NOT_FOUND:
-                case HTTP_INTERNAL_ERROR:
-                default:
-                    onError(SERVER, mRequestCode);
-                    break;
-            }
+        final ErrorType type;
+        if (e instanceof SocketTimeoutException) {
+            type = NETWORK;
+        } else if (e instanceof CertificateExpiredException) {
+            type = CERT_EXPIRED;
+        } else if (e instanceof SSLException) {
+            type = BAD_CERT;
+        } else if (e instanceof IOException) {
+            type = NO_NETWORK;
         } else {
-            onError(UNEXPECTED, mRequestCode);
+            type = SERVER;
         }
-    }
-
-    public void onError(ErrorType errorType, int requestCode) {
-        mMvpView.showError(errorType, requestCode, GENERIC_ERROR_CODE);
+        mMvpView.showError(type, mRequestCode);
     }
 
     @Override

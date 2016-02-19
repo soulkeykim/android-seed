@@ -13,7 +13,6 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.{{company_name}}.android.{{app_package_name_prefix}}.BuildConfig;
-import com.{{company_name}}.android.{{app_package_name_prefix}}.R;
 
 import java.util.List;
 

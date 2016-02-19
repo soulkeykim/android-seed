@@ -15,4 +15,9 @@ public class Test{{app_class_prefix}}App extends {{app_class_prefix}}App {
     void enableAppOnlyFunctionality() {
         // Not whilst running tests
     }
+
+    @Override
+    protected TagManager getTagManager() {
+        return mock(TagManager.class, RETURNS_MOCKS);
+    }
 }

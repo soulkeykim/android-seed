@@ -10,7 +10,9 @@ buildscript {
 }
 
 apply plugin: 'com.neenbedankt.android-apt'
+{{#crashlytics_api_key}}
 apply plugin: 'io.fabric'
+{{/crashlytics_api_key}}
 apply plugin: 'icon-version'
 apply plugin: 'spoon'
 
@@ -137,6 +139,9 @@ dependencies {
     compile "com.android.support:appcompat-v7:${versions.androidSupport}"
     compile "com.android.support:support-v4:${versions.androidSupport}"
     compile "com.android.support:recyclerview-v7:${versions.androidSupport}"
+
+    // Google Play Services
+    compile "com.google.android.gms:play-services-analytics:$versions.gms"
 
     // Dagger - Dependency Injection
     compile "com.google.dagger:dagger:${versions.dagger}"

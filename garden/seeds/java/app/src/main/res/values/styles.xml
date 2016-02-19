@@ -3,23 +3,23 @@
     <style name="General"/>
 
     <style name="General.AlertDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <item name="colorAccent">@color/default_theme_primary</item>
+        <item name="colorAccent">@color/accent</item>
         <item name="android:textColorPrimary">@color/text_secondary</item>
-        <item name="android:background">@color/grey_theme_light_background</item>
+        <item name="android:background">@color/background</item>
     </style>
 
     <style name="General.View">
         <!-- Even if these are the same value they should be separate for easier overriding in descendant styles -->
-        <item name="android:layout_marginTop">@dimen/vertical_margin_default</item>
-        <item name="android:layout_marginBottom">@dimen/vertical_margin_default</item>
-        <item name="android:layout_marginLeft">@dimen/horizontal_margin_default</item>
-        <item name="android:layout_marginRight">@dimen/horizontal_margin_default</item>
+        <item name="android:layout_marginTop">@dimen/padding_default</item>
+        <item name="android:layout_marginBottom">@dimen/padding_default</item>
+        <item name="android:layout_marginLeft">@dimen/padding_default</item>
+        <item name="android:layout_marginRight">@dimen/padding_default</item>
 
         <!-- Even if these are the same value they should be separate for easier overriding in descendant styles -->
-        <item name="android:paddingTop">@dimen/vertical_padding_default</item>
-        <item name="android:paddingBottom">@dimen/vertical_padding_default</item>
-        <item name="android:paddingLeft">@dimen/horizontal_padding_default</item>
-        <item name="android:paddingRight">@dimen/horizontal_padding_default</item>
+        <item name="android:paddingTop">@dimen/padding_default</item>
+        <item name="android:paddingBottom">@dimen/padding_default</item>
+        <item name="android:paddingLeft">@dimen/padding_default</item>
+        <item name="android:paddingRight">@dimen/padding_default</item>
     </style>
 
     <style name="General.View.TextView">

@@ -12,12 +12,12 @@ public class NetworkDataSource implements DataSource {
 
     private static final long CONNECTION_TIMEOUT = 10;
 
-    final ApiService service;
+    final ApiService mService;
 
     public NetworkDataSource(String endpoint) {
         OkHttpClient client = createDefaultHttpClient();
-   
-        service = new Retrofit.Builder()
+
+        mService = new Retrofit.Builder()
                 .baseUrl(endpoint)
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())

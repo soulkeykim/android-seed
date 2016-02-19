@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import com.{{company_name}}.android.{{app_package_name_prefix}}.activity.BaseActivity;
 import com.{{company_name}}.android.{{app_package_name_prefix}}.fragment.BaseFragment;
@@ -32,7 +33,7 @@ public abstract class Presenter<V extends MvpView> {
 
     public Presenter(@NonNull V view, AppServicesComponent component) {
         mView = view;
-        if (this.view == null) {
+        if (mView == null) {
             throw new IllegalArgumentException("view != null");
         } else if (component == null) {
             throw new IllegalArgumentException("component cannot be null");
@@ -53,7 +54,7 @@ public abstract class Presenter<V extends MvpView> {
     }
 
     protected Context getContext() {
-        return view.getContext();
+        return mView.getContext();
     }
 
     public static int nextId() {
@@ -94,8 +95,8 @@ public abstract class Presenter<V extends MvpView> {
                 .observeOn(AndroidSchedulers.mainThread());
 
         final Observable<R> boundObservable;
-        if (view instanceof BaseFragment) {
-            boundObservable = RxUtils.bindFragment((BaseFragment) view, sourceObservable);
+        if (mView instanceof BaseFragment) {
+            boundObservable = RxUtils.bindFragment((BaseFragment) mView, sourceObservable);
         } else if (getContext() instanceof BaseActivity) {
             boundObservable = RxUtils.bindActivity((BaseActivity) getContext(), sourceObservable);
         } else {
