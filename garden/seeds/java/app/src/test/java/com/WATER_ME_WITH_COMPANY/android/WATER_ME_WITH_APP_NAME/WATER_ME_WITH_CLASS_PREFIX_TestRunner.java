@@ -86,7 +86,7 @@ public class {{app_class_prefix}}TestRunner extends RobolectricGradleTestRunner 
         return new AndroidManifest(Fs.fileFromPath(src), Fs.fileFromPath(res), Fs.fileFromPath(assets)) {
             @Override
             public String getRClassName() throws Exception {
-                return com.seaplain.android.chat.processing.R.class.getName();
+                return com.{{company_name}}.android.{{app_package_name_prefix}}.R.class.getName();
             }
         };
     }
