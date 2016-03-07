@@ -1,12 +1,11 @@
-package {{company_name}}.android.{{app_package_name_prefix}};
+package com.{{company_name}}.android.{{app_package_name_prefix}};
 
-import com.byoutline.mockserver.NetworkType;
 import com.google.android.gms.tagmanager.TagManager;
 
 import static org.mockito.Mockito.RETURNS_MOCKS;
 import static org.mockito.Mockito.mock;
 
-public class Test{{app_class_prefix}}App extends {{app_class_prefix}}App {
+public class AndroidTest{{app_class_prefix}}App extends {{app_class_prefix}}App {
 
     @Override
     void enableDebugTools() {

@@ -1,4 +1,4 @@
-package {{company_name}}.android.{{app_package_name_prefix}};
+package com.{{company_name}}.android.{{app_package_name_prefix}};
 
 import android.app.Activity;
 import android.app.Instrumentation;
@@ -14,7 +14,6 @@ import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
 
-import com.{{company_name}}.android.{{app_package_name_prefix}}.activity.LoginActivityTest.LoginScreenRobot;
 import com.{{company_name}}.android.{{app_package_name_prefix}}.mvp.view.MvpView;
 import com.{{company_name}}.android.{{app_package_name_prefix}}.mvp.view.MvpView.ErrorType;
 import com.squareup.spoon.Spoon;
@@ -142,11 +141,11 @@ public abstract class ScreenRobot<T extends ScreenRobot, M> {
         return (T) this;
     }
 
-    public T callShowErrorMethod(final ErrorType errorType, final int requestCode, final int errorCode) {
+    public T callShowErrorMethod(final ErrorType errorType, final int requestCode) {
         callMethod(new Runnable() {
             @Override
             public void run() {
-                getMvpView().showError(errorType, requestCode, errorCode);
+                getMvpView().showError(errorType, requestCode);
             }
         });
 

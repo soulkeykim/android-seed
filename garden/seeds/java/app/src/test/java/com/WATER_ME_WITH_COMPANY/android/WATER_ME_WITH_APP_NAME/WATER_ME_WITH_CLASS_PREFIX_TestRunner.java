@@ -4,12 +4,13 @@ import android.app.Application;
 import android.os.Build;
 import android.support.annotation.NonNull;
 
-import com.{{company_name}}.android.{{app_package_name_prefix}}.BuildConfig;
-
 import org.junit.runners.model.InitializationError;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
+import org.robolectric.manifest.AndroidManifest;
+import org.robolectric.res.Fs;
 
+import java.io.File;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 

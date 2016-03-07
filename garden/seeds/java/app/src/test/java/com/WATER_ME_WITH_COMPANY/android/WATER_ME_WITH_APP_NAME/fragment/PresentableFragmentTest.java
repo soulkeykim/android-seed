@@ -61,7 +61,7 @@ public class PresentableFragmentTest {
 
         static DummyFragment withNullPresenter() {
             DummyFragment frag = new DummyFragment();
-            frag.app = ({{app_class_prefix}}App) RuntimeEnvironment.application;
+            frag.mApp = ({{app_class_prefix}}App) RuntimeEnvironment.application;
             return frag;
         }
 

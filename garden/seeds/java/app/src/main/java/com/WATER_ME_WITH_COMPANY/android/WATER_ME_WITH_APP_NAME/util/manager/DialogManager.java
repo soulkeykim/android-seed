@@ -1,6 +1,5 @@
 package com.{{company_name}}.android.{{app_package_name_prefix}}.util.manager;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
@@ -11,7 +10,6 @@ import android.support.annotation.StringRes;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 
-import com.{{company_name}}.android.{{app_package_name_prefix}}.{{app_class_prefix}}App;
 import com.{{company_name}}.android.{{app_package_name_prefix}}.R;
 import com.{{company_name}}.android.{{app_package_name_prefix}}.mvp.view.MvpView;
 import com.{{company_name}}.android.{{app_package_name_prefix}}.util.IntentUtils;

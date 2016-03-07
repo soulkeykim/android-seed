@@ -4,25 +4,19 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import com.{{company_name}}.android.{{app_package_name_prefix}}.{{app_class_prefix}}App;
+import com.{{company_name}}.android.{{app_package_name_prefix}}.BuildConfig;
 import com.{{company_name}}.android.{{app_package_name_prefix}}.data.AppSettings;
 import com.{{company_name}}.android.{{app_package_name_prefix}}.util.manager.DialogManager;
-import com.{{company_name}}.android.{{app_package_name_prefix}}.BuildConfig;
 import com.{{company_name}}.{{app_package_name_prefix}}.network.NetworkDataSource;
+import com.google.android.gms.tagmanager.TagManager;
 import com.lacronicus.easydatastorelib.DatastoreBuilder;
 
 import com.squareup.leakcanary.RefWatcher;
 
-import java.util.LinkedList;
-import java.util.List;
-
-import javax.inject.Named;
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-
-import com.google.android.gms.tagmanager.TagManager;
-
 
 /**
  * Dagger module to provide dependency injection
@@ -30,8 +24,9 @@ import com.google.android.gms.tagmanager.TagManager;
 @SuppressWarnings("unused")
 @Module
 public class {{app_class_prefix}}Module {
-    private {{app_class_prefix}}App mApplication;
     private final TagManager mTagManager;
+
+    private {{app_class_prefix}}App mApplication;
 
     public {{app_class_prefix}}Module({{app_class_prefix}}App app, TagManager tagManager) {
         mApplication = app;

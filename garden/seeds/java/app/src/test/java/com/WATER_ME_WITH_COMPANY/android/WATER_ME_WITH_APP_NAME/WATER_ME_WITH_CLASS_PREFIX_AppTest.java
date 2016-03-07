@@ -31,7 +31,7 @@ public class {{app_class_prefix}}AppTest {
         final {{app_class_prefix}}App app = ({{app_class_prefix}}App) RuntimeEnvironment.application;
         setupPicassoCache(app);
         app.onTrimMemory(Application.TRIM_MEMORY_COMPLETE);
-        assertThat(app.picassoImageCache.size()).isZero();
+        assertThat(app.mPicassoImageCache.size()).isZero();
     }
 
     @Test
@@ -39,7 +39,7 @@ public class {{app_class_prefix}}AppTest {
         final {{app_class_prefix}}App app = ({{app_class_prefix}}App) RuntimeEnvironment.application;
         setupPicassoCache(app);
         app.onTrimMemory(Application.TRIM_MEMORY_UI_HIDDEN);
-        assertThat(app.picassoImageCache.size()).isZero();
+        assertThat(app.mPicassoImageCache.size()).isZero();
     }
 
     @Test
@@ -47,7 +47,7 @@ public class {{app_class_prefix}}AppTest {
         final {{app_class_prefix}}App app = ({{app_class_prefix}}App) RuntimeEnvironment.application;
         setupPicassoCache(app);
         app.onTrimMemory(Application.TRIM_MEMORY_RUNNING_LOW);
-        Mockito.verifyZeroInteractions(app.picassoImageCache);
+        Mockito.verifyZeroInteractions(app.mPicassoImageCache);
     }
 
     private void setupPicassoCache({{app_class_prefix}}App app) {
@@ -58,6 +58,6 @@ public class {{app_class_prefix}}AppTest {
             // Happens when picasso singleton set more than once .. ignore..
         }
 
-        app.picassoImageCache = spy(app.picassoImageCache);
+        app.mPicassoImageCache = spy(app.mPicassoImageCache);
     }
 }

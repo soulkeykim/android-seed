@@ -1,8 +1,9 @@
 package com.{{company_name}}.android.{{app_package_name_prefix}}.module;
 
-import com.{{company_name}}.android.{{app_package_name_prefix}}.mvp.presenter.HomePresenter;
 import com.{{company_name}}.android.{{app_package_name_prefix}}.activity.BaseActivity;
 import com.{{company_name}}.android.{{app_package_name_prefix}}.fragment.BaseFragment;
+import com.{{company_name}}.android.{{app_package_name_prefix}}.mvp.presenter.HomePresenter;
+
 import javax.inject.Singleton;
 
 import dagger.Component;

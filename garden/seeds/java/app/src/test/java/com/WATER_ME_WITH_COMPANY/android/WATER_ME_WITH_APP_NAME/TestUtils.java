@@ -5,6 +5,7 @@ import com.{{company_name}}.android.{{app_package_name_prefix}}.module.DaggerApp
 import com.{{company_name}}.android.{{app_package_name_prefix}}.module.{{app_class_prefix}}Module;
 import com.{{company_name}}.android.{{app_package_name_prefix}}.mvp.presenter.Presenter;
 import com.{{company_name}}.android.{{app_package_name_prefix}}.mvp.view.MvpView;
+import com.google.android.gms.tagmanager.TagManager;
 
 import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;
@@ -105,7 +106,7 @@ public class TestUtils {
      * Create a {@link AppServicesComponent} which can be used to construct presenters
      */
     public static AppServicesComponent createAppComponent() {
-        return createAppComponent(new {{app_class_prefix}}Module(({{app_class_prefix}}App) RuntimeEnvironment.application));
+        return createAppComponent(new {{app_class_prefix}}Module(({{app_class_prefix}}App) RuntimeEnvironment.application, mock(TagManager.class)));
     }
 
     /**

@@ -1,16 +1,11 @@
 package com.{{company_name}}.android.{{app_package_name_prefix}}.util;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.GridView;
 
 import com.{{company_name}}.android.{{app_package_name_prefix}}.BuildConfig;
 
