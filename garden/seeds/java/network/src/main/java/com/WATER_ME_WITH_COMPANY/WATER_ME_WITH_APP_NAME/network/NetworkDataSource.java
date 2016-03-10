@@ -1,12 +1,11 @@
 package com.{{company_name}}.{{app_package_name_prefix}}.network;
 
-import com.squareup.okhttp.OkHttpClient;
-
-import retrofit.Retrofit;
-import retrofit.RxJavaCallAdapterFactory;
-import retrofit.GsonConverterFactory;
-import rx.Observable;
 import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NetworkDataSource implements DataSource {
 
@@ -27,10 +26,11 @@ public class NetworkDataSource implements DataSource {
     }
 
     private OkHttpClient createDefaultHttpClient() {
-        final OkHttpClient client = new OkHttpClient();
-        client.setReadTimeout(CONNECTION_TIMEOUT, TimeUnit.SECONDS);
-        client.setWriteTimeout(CONNECTION_TIMEOUT, TimeUnit.SECONDS);
-        client.setConnectTimeout(CONNECTION_TIMEOUT, TimeUnit.SECONDS);
+        final OkHttpClient client = new OkHttpClient.Builder()
+                .connectTimeout(CONNECTION_TIMEOUT, TimeUnit.SECONDS)
+                .readTimeout(CONNECTION_TIMEOUT, TimeUnit.SECONDS)
+                .writeTimeout(CONNECTION_TIMEOUT, TimeUnit.SECONDS)
+                .build();
         return client;
     }
 

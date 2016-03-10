@@ -3,13 +3,11 @@ package com.{{company_name}}.android.{{app_package_name_prefix}}.activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 
-import com.{{company_name}}.android.{{app_package_name_prefix}}.TestUtils;
 import com.{{company_name}}.android.{{app_package_name_prefix}}.{{app_class_prefix}}TestRunner;
+import com.{{company_name}}.android.{{app_package_name_prefix}}.TestUtils;
 import com.{{company_name}}.android.{{app_package_name_prefix}}.module.AppServicesComponent;
 import com.{{company_name}}.android.{{app_package_name_prefix}}.mvp.presenter.HomePresenter;
 import com.{{company_name}}.android.{{app_package_name_prefix}}.mvp.presenter.Presenter;
-import com.{{company_name}}.android.{{app_package_name_prefix}}.mvp.view.HomeMvpView;
-import com.{{company_name}}.{{app_package_name_prefix}}.network.DataSource;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,7 +15,6 @@ import org.robolectric.Robolectric;
 import org.robolectric.util.ActivityController;
 
 import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
@@ -36,7 +33,7 @@ public class PresentableActivityTest {
         final ActivityController<PresentableActivityWithMockPresenter> controller
                 = buildActivity(PresentableActivityWithMockPresenter.class);
 
-        final Presenter presenter = controller.setup().get().presenter;
+        final Presenter presenter = controller.setup().get().mPresenter;
         controller.saveInstanceState(mock(Bundle.class))
                 .pause()
                 .stop()
@@ -55,7 +52,7 @@ public class PresentableActivityTest {
     static class PresentableActivityWithMockPresenter extends PresentableActivity {
         @Override
         protected Presenter createPresenter(AppServicesComponent component) {
-            return spy(new HomePresenter(TestUtils.createView(HomeMvpView.class), component));
+            return spy(new HomePresenter(TestUtils.createView(HomePresenter.HomeMvpView.class), component));
         }
 
         @Override

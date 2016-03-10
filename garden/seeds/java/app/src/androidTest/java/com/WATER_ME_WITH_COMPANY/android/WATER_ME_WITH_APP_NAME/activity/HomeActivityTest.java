@@ -21,6 +21,8 @@ import static com.{{company_name}}.android.{{app_package_name_prefix}}.mvp.view.
 @LargeTest
 public class HomeActivityTest {
 
+    private static final String TEST_STRING = "Test";
+
     @Rule
     public ActivityTestRule<HomeActivity> mActivityRule = new ActivityTestRule<HomeActivity>(HomeActivity.class) {
         @Override
@@ -57,19 +59,20 @@ public class HomeActivityTest {
     public static class HomeScreenRobot extends ScreenRobot<HomeScreenRobot, String> {
 
         public HomeScreenRobot checkIsInLoadingState() {
-            return true;
+            return checkIsHidden(R.id.content_wv)
+                    .checkIsDisplayed(R.id.loading_fl);
         }
 
         public HomeScreenRobot checkIsInSystemErrorState() {
-            return true;
+            return checkDialogWithTextIsDisplayed(R.string.dialog_body_error_general);
         }
 
         public HomeScreenRobot checkIsDataShown() {
-            return true;
+            return checkIsDisplayed(R.id.content_wv);
         }
 
         public HomeScreenRobot callShowData() {
-            return callShowDataMethod("Test");
+            return callShowDataMethod(TEST_STRING);
         }
     }
 }

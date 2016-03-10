@@ -1,10 +1,8 @@
 package com.{{company_name}}.android.{{app_package_name_prefix}}.mvp.presenter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import com.{{company_name}}.android.{{app_package_name_prefix}}.activity.BaseActivity;
@@ -15,12 +13,9 @@ import com.{{company_name}}.android.{{app_package_name_prefix}}.module.AppServic
 import com.{{company_name}}.android.{{app_package_name_prefix}}.util.BaseSubscriber;
 
 import rx.Observable;
-import rx.Observer;
-import rx.Subscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
-import rx.subscriptions.CompositeSubscription;
 
 /**
  * Base class for all presenters (In the Model-View-Presenter architecture) within the application

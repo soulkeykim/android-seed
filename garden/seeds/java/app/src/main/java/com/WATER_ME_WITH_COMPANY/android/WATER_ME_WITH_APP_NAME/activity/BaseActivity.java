@@ -4,14 +4,13 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
-import javax.inject.Inject;
-
 import com.{{company_name}}.android.{{app_package_name_prefix}}.{{app_class_prefix}}App;
 import com.{{company_name}}.android.{{app_package_name_prefix}}.util.manager.DialogManager;
+
+import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;

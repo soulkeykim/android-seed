@@ -1,5 +1,10 @@
 package com.{{company_name}}.android.{{app_package_name_prefix}};
 
+import com.google.android.gms.tagmanager.TagManager;
+
+import static org.mockito.Mockito.RETURNS_MOCKS;
+import static org.mockito.Mockito.mock;
+
 /**
  * App class used to run Robolectric tests.
  */

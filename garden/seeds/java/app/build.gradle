@@ -143,7 +143,7 @@ dependencies {
     compile "com.android.support:recyclerview-v7:${versions.androidSupport}"
 
     // Google Play Services
-    compile "com.google.android.gms:play-services-analytics:$versions.gms"
+    compile "com.google.android.gms:play-services-analytics:${versions.gms}"
 
     // Dagger - Dependency Injection
     compile "com.google.dagger:dagger:${versions.dagger}"
@@ -198,6 +198,7 @@ dependencies {
     testCompile "org.assertj:assertj-core:${versions.assertJ}"
 
     // Android Testing
+    androidTestCompile "org.mockito:mockito-core:${versions.mockito}"
     androidTestCompile "com.android.support.test.espresso:espresso-core:${versions.espresso}"
     androidTestCompile "com.android.support.test:runner:${versions.esspressoSupport}"
     androidTestCompile "com.android.support.test:rules:${versions.esspressoSupport}"

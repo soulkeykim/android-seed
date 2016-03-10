@@ -1,26 +1,14 @@
 package com.{{company_name}}.android.{{app_package_name_prefix}}.mvp.presenter;
 
-import android.app.Activity;
-import android.content.Context;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
 
-import com.{{company_name}}.android.{{app_package_name_prefix}}.activity.BaseActivity;
-import com.{{company_name}}.android.{{app_package_name_prefix}}.fragment.BaseFragment;
-import com.{{company_name}}.android.{{app_package_name_prefix}}.util.RxUtils;
 import com.{{company_name}}.android.{{app_package_name_prefix}}.module.AppServicesComponent;
-import com.{{company_name}}.android.{{app_package_name_prefix}}.mvp.view.MvpView;
 import com.{{company_name}}.android.{{app_package_name_prefix}}.mvp.presenter.HomePresenter.HomeMvpView;
-
-import rx.Observable;
-import rx.Observer;
-import rx.Subscriber;
-import rx.Subscription;
-import rx.schedulers.Schedulers;
-import rx.subscriptions.CompositeSubscription;
+import com.{{company_name}}.android.{{app_package_name_prefix}}.mvp.view.MvpView;
 
 public class HomePresenter extends Presenter<HomeMvpView> {
+
+    public final static int SUBMIT_MESSAGE_REQUEST = nextId();
 
     public HomePresenter(@NonNull HomeMvpView view, AppServicesComponent component) {
         super(view, component);
